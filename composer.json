@@ -1,0 +1,29 @@
+{
+    "name": "brianvb/yii2-mailchimp",
+    "description": "CRUD actions",
+    "type": "yii2-extension",
+    "require": {
+        "brianvb/yii2-singleton": "@dev",
+        "yiisoft/yii2": "^2.0",
+        "mailchimp/marketing": "*",
+        "kartik-v/yii2-widget-activeform": "@dev"
+    },
+    "authors": [
+        {
+            "name": "BrianVB",
+            "email": "vanburen.brian@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "bvb\\mailchimp\\": "src"
+        }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://asset-packagist.org"
+        }
+    ]
+}
