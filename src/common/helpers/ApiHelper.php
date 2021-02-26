@@ -5,6 +5,7 @@ namespace bvb\mailchimp\common\helpers;
 use bvb\singleton\Singleton;
 use MailchimpMarketing\ApiClient;
 use Yii;
+use yii\base\InvalidConfigException;
 use yii\base\BaseObject;
 
 /**
@@ -44,9 +45,15 @@ class ApiHelper extends BaseObject
     public function init()
     {
         if(empty($this->apiKey)){
+            if(!isset(Yii::$app->params['mailchimp']['apiKey'])){
+                throw new InvalidConfigException('To use the Mailchimp API an `apiKey` needs to be provided to the helper class or an application parameter needs to be set under [\'mailchimp\'][\'apiKey\']');
+            }
             $this->apiKey = Yii::$app->params['mailchimp']['apiKey'];
         }
         if(empty($this->server)){
+            if(!isset(Yii::$app->params['mailchimp']['server'])){
+                throw new InvalidConfigException('To use the Mailchimp API an `server` needs to be provided to the helper class or an application parameter needs to be set under [\'mailchimp\'][\'server\']');
+            }
             $this->server = Yii::$app->params['mailchimp']['server'];
         }
 
