@@ -2,7 +2,7 @@
 
 namespace bvb\mailchimp\common\helpers;
 
-use bvb\singleton\Singleton;
+use yiiutils\Singleton;
 use MailchimpMarketing\ApiClient;
 use Yii;
 use yii\base\InvalidConfigException;
