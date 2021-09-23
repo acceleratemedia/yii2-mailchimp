@@ -7,7 +7,7 @@
 /* @var $hint string */
 
 use bvb\mailchimp\frontend\MailchimpModule;
-use kartik\form\ActiveForm;
+use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
