@@ -32,15 +32,17 @@ class ListsController extends Controller
             ]);
             $success = true;
         } catch (\MailchimpMarketing\ApiException $e) {
-            Yii::error($e);
             $message =  $e->getMessage();
-            
+            Yii::error('There was a problem adding a user to a list: '.$e->getMessage());            
         } catch(\GuzzleHttp\Exception\ClientException $e){
             $errorContents = Json::decode($e->getResponse()->getBody()->getContents());
             if(isset($errorContents['title']) && $errorContents['title'] == 'Member Exists'){
                 $message = 'This email address is already subscribed to this list.';
             } else {
-                Yii::error($e);
+                Yii::error(
+                    'There was a problem adding a user to a list: '.$e->getMessage()."\n".
+                    '$errorContents: '.print_r($errorContents,true)
+                );
                 $message = 'Error connecting to service.';
             }
         }
