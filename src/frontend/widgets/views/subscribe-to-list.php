@@ -5,6 +5,7 @@
 /* @var $apiModuleId string */
 /* @var $label string */
 /* @var $hint string */
+/* @var $buttonOptions array */
 
 use bvb\mailchimp\frontend\MailchimpModule;
 use yii\widgets\ActiveForm;
@@ -31,7 +32,7 @@ $form = ActiveForm::begin();
     echo $emailField->input('email', ['placeholder' => 'Enter Email Address']);
     echo Html::activeHiddenInput($subscribeToListForm, 'listId'); ?>
     <div id="<?= $form->getId(); ?>-success-message" class="success-message-container"></div>
-    <?php echo Html::submitButton('Subscribe', ['class' => 'btn btn-primary']);
+    <?php echo Html::submitButton('Subscribe', $buttonOptions);
 ActiveForm::end();
 
 $emailInputId = Html::getInputId($subscribeToListForm, 'email');

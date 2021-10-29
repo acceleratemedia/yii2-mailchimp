@@ -6,6 +6,7 @@ use bvb\mailchimp\api\ApiModule;
 use bvb\mailchimp\frontend\MailchimpModule;
 use bvb\mailchimp\frontend\models\SubscribeToListForm;
 use yii\base\Widget;
+use yii\helpers\ArrayHelper;;
 
 /**
  * SubscribeToList displays a form with a slot for a user's email to subscribe
@@ -56,6 +57,18 @@ class SubscribeToList extends Widget
     public $hint;
 
     /**
+     * @var array Passed into Html::submitButton()
+     */
+    public $buttonOptions = [];
+
+    /**
+     * @var array Default values passed into Html::submitButton()
+     */
+    static $defaultButtonOptions = [
+        'class' => ['btn btn-primary']
+    ];
+
+    /**
      * Displays the form
      * {@inheritdoc}
      */ 
@@ -66,7 +79,8 @@ class SubscribeToList extends Widget
             'hint' => $this->hint,
             'label' => $this->label,
             'moduleId' => $this->moduleId,
-            'subscribeToListForm' => $this->getSubscribeToListForm()
+            'subscribeToListForm' => $this->getSubscribeToListForm(),
+            'buttonOptions' => ArrayHelper::merge(self::$defaultButtonOptions, $this->buttonOptions)
         ]);
     }
 
