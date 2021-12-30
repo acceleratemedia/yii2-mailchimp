@@ -1,5 +1,5 @@
 {
-    "name": "brianvb/yii2-mailchimp",
+    "name": "acceleratemedia/yii2-mailchimp",
     "description": "CRUD actions",
     "type": "yii2-extension",
     "require": {
