@@ -1,24 +1,22 @@
 <?php
 
-namespace bvb\mailchimp\common\helpers;
+namespace bvb\mailchimp\helpers;
 
-use yiiutils\Singleton;
 use MailchimpMarketing\ApiClient;
 use Yii;
 use yii\base\InvalidConfigException;
-use yii\base\BaseObject;
 
 /**
- * ApiHelper wraps MailChimps PHP marketing API allowing use of application 
+ * ApiHelper wraps MailChimps PHP marketing API allowing use of application
  * parameters to set things like default lists, keys, etc
  */
-class ApiHelper extends BaseObject
+class ApiHelper extends \yii\base\BaseObject
 {
     /**
      * Implement the singleton function since each class extending from this
      * by default only ever needs a single instance
      */
-    use Singleton;
+    use \yiiutils\Singleton;
 
     /**
      * API key gotten in MailChimp's account area
@@ -44,20 +42,20 @@ class ApiHelper extends BaseObject
      */
     public function init()
     {
-        if(empty($this->apiKey)){
-            if(!isset(Yii::$app->params['mailchimp']['apiKey'])){
+        if(empty($this->apiKey)) {
+            if(!isset(Yii::$app->params['mailchimp']['apiKey'])) {
                 throw new InvalidConfigException('To use the Mailchimp API an `apiKey` needs to be provided to the helper class or an application parameter needs to be set under [\'mailchimp\'][\'apiKey\']');
             }
             $this->apiKey = Yii::$app->params['mailchimp']['apiKey'];
         }
-        if(empty($this->server)){
-            if(!isset(Yii::$app->params['mailchimp']['server'])){
+        if(empty($this->server)) {
+            if(!isset(Yii::$app->params['mailchimp']['server'])) {
                 throw new InvalidConfigException('To use the Mailchimp API an `server` needs to be provided to the helper class or an application parameter needs to be set under [\'mailchimp\'][\'server\']');
             }
             $this->server = Yii::$app->params['mailchimp']['server'];
         }
 
-        $this->_client = new ApiClient;
+        $this->_client = new ApiClient();
         $this->_client->setConfig([
             'apiKey' => $this->apiKey,
             'server' => $this->server
